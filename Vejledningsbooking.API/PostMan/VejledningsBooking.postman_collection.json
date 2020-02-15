@@ -1,0 +1,731 @@
+{
+	"info": {
+		"_postman_id": "bb34afd5-2878-48f2-8449-6988bd0642b5",
+		"name": "VejledningsBooking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Teachers",
+			"item": [
+				{
+					"name": "GET Teachers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:51044/api/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Teacher",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/jsom",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:51044/api/teachers/2ee49fe1-edf2-4f21-8409-3eb25ae6ca51",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"teachers",
+								"2ee49fe1-edf2-4f21-8409-3eb25ae6ca51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Teacher (Not Found)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.marvin.hateoas+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:51044/api/teachers/2ee49fe3-edf2-4f91-8309-3eb25ce6cd51",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"teachers",
+								"2ee49fe3-edf2-4f91-8309-3eb25ce6cd51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HEAD Teachers",
+					"request": {
+						"method": "HEAD",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:51044/api/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Teacher",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"TeacherFirstName\" : \"Solveig\",\n\t\"TeacherLastName\" : \"Pedersen\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:51044/api/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Teacher with Courses",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teacherFirstName\" : \"Bent\",\n\t\"teacherlastName\" : \"Andersen\",\n\t\"courses\": [\n\t\t{\n\t\t\t\"title\" : \"Førstehjælp\"\n\t\t},\n\t\t{\n\t\t\t\"title\" : \"Advanced gRPC\"\n\t\t}\n\t\t]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:51044/api/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Teacher",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:51044/api/teachers/2ee49fe1-edf2-4f21-8409-3eb25ae6ca51",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"teachers",
+								"2ee49fe1-edf2-4f21-8409-3eb25ae6ca51"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Courses",
+			"item": [
+				{
+					"name": "GET Cources for Teacher",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:51044/api/teachers/2ee49fe1-edf2-4f21-8409-3eb25ae6ca51/courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"teachers",
+								"2ee49fe1-edf2-4f21-8409-3eb25ae6ca51",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Cource for Teacher",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:51044/api/teachers/2ee49fe1-edf2-4f21-8409-3eb25ae6ca51/courses/18d63e5e-7194-4f80-8739-610de1bea1ee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"teachers",
+								"2ee49fe1-edf2-4f21-8409-3eb25ae6ca51",
+								"courses",
+								"18d63e5e-7194-4f80-8739-610de1bea1ee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Course for Teacher",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json-patch+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n      \"op\": \"replace\",\n      \"path\": \"/title\",\n      \"value\": \"Updated title\"\n    }\n]"
+						},
+						"url": {
+							"raw": "http://localhost:51044/api/teachers/2ee49fe1-edf2-4f21-8409-3eb25ae6ca51/courses/5b1c2b4d-48c7-402a-80c3-cc796ad49c6b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"teachers",
+								"2ee49fe1-edf2-4f21-8409-3eb25ae6ca51",
+								"courses",
+								"5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Course for Teacher",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\" : \"Der er lang vej\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:51044/api/teachers/21e49fe3-e1f2-4f11-8319-3eb15ce1ca51/courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"teachers",
+								"21e49fe3-e1f2-4f11-8319-3eb15ce1ca51",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Course for Teacher",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Course new title\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:51044/api/teachers/2ee49fe1-edf2-4f21-8409-3eb25ae6ca51/courses/18d63e5e-7194-4f80-8739-610de1bea1ee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"teachers",
+								"2ee49fe1-edf2-4f21-8409-3eb25ae6ca51",
+								"courses",
+								"18d63e5e-7194-4f80-8739-610de1bea1ee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Course for Teacher",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:51044/api/teachers/2ee49fe1-edf2-4f21-8409-3eb25ae6ca51/courses/5b1c2b1d-4817-4021-81c3-cc796ad19c6b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"teachers",
+								"2ee49fe1-edf2-4f21-8409-3eb25ae6ca51",
+								"courses",
+								"5b1c2b1d-4817-4021-81c3-cc796ad19c6b"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "GET Students",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:51044/api/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Student",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/jsom",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:51044/api/students/d28111e1-2b29-473a-a40f-e18cb51f9b35",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"students",
+								"d28111e1-2b29-473a-a40f-e18cb51f9b35"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Student",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"StudentFirstName\" : \"Solveig\",\n\t\"StudentLastName\" : \"Pedersen\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:51044/api/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Student with Course",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"studentFirstName\" : \"Bent\",\n\t\"studentLastName\" : \"Andersen\",\n\t\"courses\": [\n\t\t{\n\t\t\t\"title\" : \"Førstehjælp\"\n\t\t},\n\t\t{\n\t\t\t\"title\" : \"Advanced gRPC\"\n\t\t}\n\t\t]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:51044/api/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Student to a Course",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"studentFirstName\" : \"Bent\",\n\t\"studentLastName\" : \"Andersen\",\n\t\"courses\": [\n\t\t{\n\t\t\t\"title\" : \"Førstehjælp\"\n\t\t},\n\t\t{\n\t\t\t\"title\" : \"Advanced gRPC\"\n\t\t}\n\t\t]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:51044/api/students/d28888e1-2b29-473a-a40f-e18cb51f9b35/courses/24a9e75f-6d96-4c8f-8330-fb58f65e05b3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"students",
+								"d28888e1-2b29-473a-a40f-e18cb51f9b35",
+								"courses",
+								"24a9e75f-6d96-4c8f-8330-fb58f65e05b3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "fe290a60-6928-425a-a8ee-6ef6ee9f717c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "256480fb-0118-4aad-97ac-9fd85359869f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Calendars",
+			"item": [
+				{
+					"name": "GET Calendars",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/jsom",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:51044/api/calendars",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"calendars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Calendar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Kalender 2020 Forår\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:51044/api/calendars",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"calendars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Calendar with Timeslot",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Name\" : \"Kalender for SW vejledning\",\n\t\"timeslots\": [\n\t\t{\n\t\t\t\"TimeSlotStartDateTime\" : \"2020-03-19 8:00:00\",\n\t\t\t\"TimeSlotEndDateTime\" : \"2020-03-19 14:00:00\",\n\t\t\t\"bookings\": [\n\t\t\t\t{\n\t\t\t\t\t\"StartDateTime\" :\"2020-03-19 8:00:00\",\n\t\t\t\t\t\"EndDateTime\":\"2020-03-19 14:00:00\"\n\t\t\t\t}\n\t\t\t\t]\n\t\t}\n\t\t]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:51044/api/calendars",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"calendars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Calendar to a Course",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"studentFirstName\" : \"Bent\",\n\t\"studentLastName\" : \"Andersen\",\n\t\"courses\": [\n\t\t{\n\t\t\t\"title\" : \"Førstehjælp\"\n\t\t},\n\t\t{\n\t\t\t\"title\" : \"Advanced gRPC\"\n\t\t}\n\t\t]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:51044/api/calendars/430890d7-0eff-475b-9c6f-3e66e1713772/courses/58f27914-1424-43c6-9d8a-440e7de3bbed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"calendars",
+								"430890d7-0eff-475b-9c6f-3e66e1713772",
+								"courses",
+								"58f27914-1424-43c6-9d8a-440e7de3bbed"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
