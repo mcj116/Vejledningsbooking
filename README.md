@@ -1,3 +1,3 @@
 # Vejledningsbooking
 
-Vejledningsbooking opgave i faget "Design og implementering afMicroservices med dot-net Core" på for uddannelseshold: Vejle/Odense-PBA/diplom, Forår 2020
+Vejledningsbooking opgave i faget "Design og implementering af Microservices med dot-net Core" på for uddannelseshold: Vejle/Odense-PBA/diplom, Forår 2020
