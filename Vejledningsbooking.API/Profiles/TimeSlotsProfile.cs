@@ -16,6 +16,7 @@ namespace Vejledningsbooking.API.Profiles
                     opt => opt.MapFrom(src => $"{src.Teacher.TeacherFirstName} {src.Teacher.TeacherLastName}"));
 
             CreateMap<Entities.Booking, Model_Dtos_.TimeSlotDto>();
+            CreateMap<Model_Dtos_.TimeSlotForCreationDto, Entities.TimeSlot>();
         }
 
     }

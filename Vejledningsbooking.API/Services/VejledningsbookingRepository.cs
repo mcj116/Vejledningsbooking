@@ -111,21 +111,6 @@ namespace Vejledningsbooking.API.Services
             return _context.Teachers.Include(t => t.Courses).ToList<Teacher>();
         }
 
-        //public IEnumerable<Teacher> GetTeachers(IEnumerable<Guid> teacherIds)
-        //{
-        //    if (teacherIds == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(teacherIds));
-        //    }
-
-        //    return _context.Teachers.Where(a => teacherIds.Contains(a.Id))
-        //        .OrderBy(a => a.TeacherFirstName)
-        //        .OrderBy(a => a.TeacherLastName)
-        //        .Include(t => t.Courses)
-        //        .ToList();
-        //}
-
-
 
         public bool Save()
         {
@@ -269,7 +254,6 @@ namespace Vejledningsbooking.API.Services
             {
                 throw new ArgumentNullException(nameof(courseId));
             }
-            // always set the AuthorId to the passed-in authorId
 
             _context.Courses.Where(c => c.Id == courseId).FirstOrDefault<Course>().StudentId = studentId;
 
@@ -327,14 +311,6 @@ namespace Vejledningsbooking.API.Services
             }
 
 
-            // the repository fills the id (instead of using identity columns)
-            // calendar.Id = Guid.NewGuid();
-
-            //foreach (var timeSlot in calendar.TimeSlots)
-            //{
-            //    timeSlot.Id = Guid.NewGuid();
-            //}
-            //_context.Students.FirstOrDefault(s => s.Id == calendar.Id).Courses.FirstOrDefault().Calendar.TimeSlots
             _context.Calendars.Add(calendar);
         }
 
@@ -363,6 +339,196 @@ namespace Vejledningsbooking.API.Services
             throw new NotImplementedException();
         }
 
+        public bool TimeSlotOverLap(TimeSlot timeSlot)
+        {
+            if (timeSlot == null)
+            {
+                throw new ArgumentNullException(nameof(timeSlot));
+            }
 
+            foreach (Teacher teacher in _context.Teachers.Where(t => t.Id == timeSlot.TeacherId).Include(t => t.TimeSlots).ToList())
+            {
+                foreach (TimeSlot teacherTimeSlot in teacher.TimeSlots)
+                {
+                    // If new timeslot startdate is within start/end date of existing timeslot = overlap
+                    if (teacherTimeSlot.TimeSlotStartDateTime <= timeSlot.TimeSlotStartDateTime && teacherTimeSlot.TimeSlotEndDateTime >= timeSlot.TimeSlotStartDateTime)
+                    {
+                        return true;
+                    }
+                    // If new timeslot enddate is within start/end date of existing timeslot = overlap
+                    if (teacherTimeSlot.TimeSlotStartDateTime <= timeSlot.TimeSlotEndDateTime && teacherTimeSlot.TimeSlotEndDateTime >= timeSlot.TimeSlotEndDateTime)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public TimeSlot GetTimeSlotForCalendar(Guid timeSlotId, Guid calendarId)
+        {
+            if (timeSlotId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(timeSlotId));
+            }
+
+            if (calendarId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(calendarId));
+            }
+
+            return _context.TimeSlots
+              .Where(c => c.CalendarId == calendarId && c.Id == timeSlotId).FirstOrDefault();
+        }
+
+        public void DeleteTimeSlot(TimeSlot timeSlot)
+        {
+            if (timeSlot == null)
+            {
+                throw new ArgumentNullException(nameof(timeSlot));
+            }
+
+            _context.TimeSlots.Remove(timeSlot);
+        }
+
+        public void AddTimeSlot(Guid calendarId, TimeSlot timeSlot)
+        {
+            if (calendarId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(calendarId));
+            }
+
+            if (timeSlot == null)
+            {
+                throw new ArgumentNullException(nameof(timeSlot));
+            }
+            timeSlot.CalendarId = calendarId;
+            _context.TimeSlots.Add(timeSlot);
+        }
+
+        public IEnumerable<TimeSlot> GetTimeSlotsForCalendar(Guid calendarId)
+        {
+            if (calendarId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(calendarId));
+            }
+
+
+            return _context.TimeSlots
+              .Where(c => c.CalendarId == calendarId)
+              .Include(t => t.Teacher)
+              .Include(b => b.Bookings).ThenInclude(s => s.Student)
+                        .OrderBy(c => c.Id).ToList();
+        }
+
+        public bool TimeSlotExists(Guid timeSlotId)
+        {
+            if (timeSlotId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(timeSlotId));
+            }
+
+            return _context.TimeSlots.Any(a => a.Id == timeSlotId);
+        }
+
+        public IEnumerable<Booking> GetBookingsForTimeSlot(Guid timeSlotId)
+        {
+            if (timeSlotId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(timeSlotId));
+            }
+
+            return _context.Bookings
+              .Where(c => c.TimeSlotId == timeSlotId).Include(s =>s.Student).ToList();
+        }
+
+        public bool BookingOverLap(Booking booking)
+        {
+            if (booking == null)
+            {
+                throw new ArgumentNullException(nameof(booking));
+            }
+
+            foreach (TimeSlot timeSlot in _context.TimeSlots.Where(t => t.Id == booking.TimeSlotId).Include(t => t.Bookings).ToList())
+            {
+                foreach (Booking timeslotBooking in timeSlot.Bookings)
+                {
+                    // If new timeslot startdate is within start/end date of existing timeslot = overlap
+                    if (timeslotBooking.StartDateTime <= booking.StartDateTime && timeslotBooking.EndDateTime >= booking.StartDateTime)
+                    {
+                        return true;
+                    }
+                    // If new timeslot enddate is within start/end date of existing timeslot = overlap
+                    if (timeslotBooking.StartDateTime <= booking.EndDateTime && timeslotBooking.EndDateTime >= booking.EndDateTime)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            foreach (Booking studentbooking in _context.Bookings.Where(s=>s.StudentId == booking.StudentId))
+            {
+                // If new timeslot startdate is within start/end date of existing timeslot = overlap
+                if (studentbooking.StartDateTime <= booking.StartDateTime && studentbooking.EndDateTime >= booking.StartDateTime)
+                {
+                    return true;
+                }
+                // If new timeslot enddate is within start/end date of existing timeslot = overlap
+                if (studentbooking.StartDateTime <= booking.EndDateTime && studentbooking.EndDateTime >= booking.EndDateTime)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void AddBooking(Guid timeslotId, Booking booking)
+        {
+            if (timeslotId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(timeslotId));
+            }
+
+            if (booking == null)
+            {
+                throw new ArgumentNullException(nameof(booking));
+            }
+            booking.TimeSlotId = timeslotId;
+            _context.Bookings.Add(booking);
+        }
+
+        public Booking GetBookingForTimeslot(Guid timeslotId, Guid bookingId)
+        {
+            if (bookingId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(bookingId));
+            }
+
+
+            return _context.Bookings
+              .Where(c => c.Id == bookingId).FirstOrDefault();
+        }
+
+        public void DeleteBooking(Booking booking)
+        {
+            if (booking == null)
+            {
+                throw new ArgumentNullException(nameof(booking));
+            }
+
+            _context.Bookings.Remove(booking);
+        }
+
+        public bool BookingExists(Guid bookingId)
+        {
+            if (bookingId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(bookingId));
+            }
+
+            return _context.Bookings.Any(a => a.Id == bookingId);
+        }
     }
 }

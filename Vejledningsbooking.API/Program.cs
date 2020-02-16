@@ -23,25 +23,7 @@ namespace Vejledningsbooking.API
 
                 context.Database.EnsureCreated();
             }
-            // migrate the database.  Best practice = in Main, using service scope
-
-            // Sql using
-            //using (var scope = host.Services.CreateScope())
-            //{
-            //    try
-            //    {
-            //        var context = scope.ServiceProvider.GetService<VejledningsbookingContext>();
-            //        // for demo purposes, delete the database & migrate on startup so 
-            //        // we can start with a clean slate
-            //        context.Database.EnsureDeleted();
-            //        context.Database.Migrate();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-            //        logger.LogError(ex, "An error occurred while migrating the database.");
-            //    }
-            //}
+          
             host.Run();
 
 

@@ -15,6 +15,8 @@ namespace Vejledningsbooking.API.Profiles
                     dest => dest.StudentName,
                     opt => opt.MapFrom(src => $"{src.Student.StudentFirstName} {src.Student.StudentLastName}"));
 
+
+            CreateMap<Model_Dtos_.BookingForCreationDto, Entities.Booking>();
         }
 
     }

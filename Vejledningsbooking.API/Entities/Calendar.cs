@@ -19,7 +19,7 @@ namespace Vejledningsbooking.API.Entities
         public List<TimeSlot> TimeSlots { get; set; }
 
         public List<Course> Courses { get; set; }
-        //    = new List<Course>();
+
 
     }
 

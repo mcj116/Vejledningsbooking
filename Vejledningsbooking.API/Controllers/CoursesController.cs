@@ -248,23 +248,7 @@ namespace Vejledningsbooking.API.Controllers
                 return NotFound();
             }
 
-            //var courseForStudentFromRepo = _vejledningsbookingRepository.GetCourseForStudent(studentId, courseId);
 
-            //if (courseForStudentFromRepo == null)
-            //{
-            //    var courseToAdd = _mapper.Map<Entities.Course>(course);
-            //    courseToAdd.Id = courseId;
-
-            //    _vejledningsbookingRepository.AddCourse(studentId, courseToAdd);
-            //    _vejledningsbookingRepository.Save();
-
-            //    var courseToReturn = _mapper.Map<CourseDto>(courseToAdd);
-
-            //    return CreatedAtRoute("GetCourseForTeacher",
-            //        new { teacherId = studentId, courseId = courseToReturn.Id },
-            //        courseToReturn);
-
-            //}
 
             _vejledningsbookingRepository.AssociateCourseToStudent(studentId,courseId);
             _vejledningsbookingRepository.Save();
@@ -292,23 +276,7 @@ namespace Vejledningsbooking.API.Controllers
                 return NotFound();
             }
 
-            //var courseForCalendarFromRepo = _vejledningsbookingRepository.GetCourseForCalendar(calendarId, courseId);
-
-            //if (courseForCalendarFromRepo == null)
-            //{
-            //    var courseToAdd = _mapper.Map<Entities.Course>(course);
-            //    courseToAdd.Id = courseId;
-
-            //    _vejledningsbookingRepository.AddCourse(calendarId, courseToAdd);
-            //    _vejledningsbookingRepository.Save();
-
-            //    var courseToReturn = _mapper.Map<CourseDto>(courseToAdd);
-
-            //    return CreatedAtRoute("GetCourseForTeacher",
-            //        new { teacherId = calendarId, courseId = courseToReturn.Id },
-            //        courseToReturn);
-
-            //}
+    
 
             _vejledningsbookingRepository.AssociateCourseToCalendar(calendarId, courseId);
             _vejledningsbookingRepository.Save();

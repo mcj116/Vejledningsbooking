@@ -39,5 +39,20 @@ namespace Vejledningsbooking.API.Services
         bool CalendarExists(Guid calendarId);
         Course GetCourseForCalendar(Guid calendarId, Guid courseId);
         Course AssociateCourseToCalendar(Guid calendarId, Guid courseId);
+
+        bool TimeSlotOverLap(TimeSlot timeSlot);
+        TimeSlot GetTimeSlotForCalendar(Guid timeSlotId, Guid calendarId);
+        void DeleteTimeSlot(TimeSlot timeSlot);
+        void AddTimeSlot(Guid calendarId, TimeSlot timeSlot);
+        IEnumerable<TimeSlot> GetTimeSlotsForCalendar(Guid calendarId);
+        bool TimeSlotExists(Guid timeSlotId);
+
+
+        IEnumerable<Booking> GetBookingsForTimeSlot(Guid timeSlotId);
+        bool BookingOverLap(Booking booking);
+        void AddBooking(Guid timeslotId, Booking booking);
+        Booking GetBookingForTimeslot(Guid timeslotId, Guid bookingId);
+        void DeleteBooking(Booking booking);
+        bool BookingExists(Guid bookingId);
     }
 }

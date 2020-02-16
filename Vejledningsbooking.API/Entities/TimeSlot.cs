@@ -26,7 +26,9 @@ namespace Vejledningsbooking.API.Entities
         public Guid CalendarId { get; set; }
         //public Guid TeacherId { get; set; } TODO:
 
+
         public Teacher Teacher { get; set; }
+    //    [Required]
         public Guid TeacherId { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
