@@ -48,6 +48,7 @@ namespace Vejledningsbooking.API.DbContexts
                     StudentLastName = "Andersen"
                 }
                 );
+
             modelBuilder.Entity<Teacher>().HasData(
                 new Teacher()
                 {
@@ -81,9 +82,46 @@ namespace Vejledningsbooking.API.DbContexts
                 {
                     Id = Guid.Parse("18d63e5e-7194-4f80-8739-610de1bea1ee"),
                     Title = "OPBSW22FD1",
+                    TeacherId = Guid.Parse("2ee49fe1-edf2-4f21-8409-3eb25ae6ca51"),
+                    StudentId = Guid.Parse("d28111e1-2b29-473a-a40f-e18cb51f9b35"),
+                    CalendarId = Guid.Parse("18d63e5e-7194-4f80-8739-601de1bea1ee")
+                }
+                );
+
+            modelBuilder.Entity<Calendar>()
+                .HasData(
+                new Calendar()
+                {
+                    Id = Guid.Parse("18d63e5e-7194-4f80-8739-601de1bea1ee"),
+                    Name = "Forår 2020"
+                }
+                );
+
+            modelBuilder.Entity<TimeSlot>()
+                .HasData(
+                new TimeSlot()
+                {
+                    Id = Guid.Parse("18d23e5e-7194-4f80-8739-601de1bea1ee"),
+                    CalendarId = Guid.Parse("18d63e5e-7194-4f80-8739-601de1bea1ee"),
+                    TimeSlotStartDateTime = DateTime.Parse("2020-03-14 08:30:00"),
+                    TimeSlotEndDateTime = DateTime.Parse("2020-03-14 11:30:00"),
                     TeacherId = Guid.Parse("2ee49fe1-edf2-4f21-8409-3eb25ae6ca51")
                 }
                 );
+
+            modelBuilder.Entity<Booking>()
+                .HasData(
+                new Booking()
+                {
+                    Id = Guid.Parse("18d23a5a-7194-4f80-8739-601de1bea1ee"),
+                    TimeSlotId = Guid.Parse("18d23e5e-7194-4f80-8739-601de1bea1ee"),
+                    StartDateTime = DateTime.Parse("2020-03-14 08:30:00"),
+                    EndDateTime = DateTime.Parse("2020-03-14 09:30:00"),
+                    StudentId = Guid.Parse("d28111e1-2b29-473a-a40f-e18cb51f9b35")
+                }
+                );
+
+
             base.OnModelCreating(modelBuilder);
         }
 

@@ -24,6 +24,9 @@ namespace Vejledningsbooking.API.Entities
         public Calendar Calendar { get; set; }
 
         public Guid CalendarId { get; set; }
+        //public Guid TeacherId { get; set; } TODO:
+
+        public Teacher Teacher { get; set; }
         public Guid TeacherId { get; set; }
 
     }

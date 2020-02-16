@@ -19,6 +19,7 @@ namespace Vejledningsbooking.API.Entities
         //public ICollection<Course> Courses { get; set; }
         //= new List<Course>();
         public List<Course> Courses { get; set; }
+        public List<TimeSlot> TimeSlots { get; set; }
 
     }
 }

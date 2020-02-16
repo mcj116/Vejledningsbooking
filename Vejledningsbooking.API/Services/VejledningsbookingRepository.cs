@@ -283,7 +283,8 @@ namespace Vejledningsbooking.API.Services
         }
         public IEnumerable<Calendar> GetCalendars()
         {
-            return _context.Calendars.Include(c => c.Courses).Include(t => t.TimeSlots).ThenInclude(b => b.Bookings).ToList();
+           // return _context.Calendars.ToList();
+            return _context.Calendars.Include(t => t.TimeSlots).ThenInclude(b => b.Teacher).ToList();
         }
 
         public Calendar GetCalendar(Guid calendarId)
