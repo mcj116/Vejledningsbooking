@@ -11,6 +11,10 @@ namespace Vejledningsbooking.API.Profiles
         public CalendarsProfile()
         {
             CreateMap<Entities.Calendar, Model_Dtos_.CalendarDto>();
+
+            CreateMap<Entities.TimeSlot, Model_Dtos_.CalendarDto>();
+            CreateMap<Entities.Booking, Model_Dtos_.TimeSlotDto>();
+
             CreateMap<Model_Dtos_.CalendarForCreationDto, Entities.Calendar>();
         }
 

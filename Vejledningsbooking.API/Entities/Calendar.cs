@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Vejledningsbooking.API.Model_Dtos_;
 
 namespace Vejledningsbooking.API.Entities
 {

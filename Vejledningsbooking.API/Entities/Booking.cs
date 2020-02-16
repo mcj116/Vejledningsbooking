@@ -22,6 +22,7 @@ namespace Vejledningsbooking.API.Entities
 
         public Guid TimeSlotId { get; set; }
         public Guid StudentId { get; set; }
+        public Student Student { get; set; }
 
     }
 }

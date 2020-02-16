@@ -17,7 +17,8 @@ namespace Vejledningsbooking.API.Entities
         [MaxLength(50)]
         public string StudentLastName { get; set; }
 
-        public ICollection<Course> Courses { get; set; }
-    = new List<Course>();
+        public List<Course> Courses { get; set; }
+
+        public List<Booking> Bookings { get; set; }
     }
 }
