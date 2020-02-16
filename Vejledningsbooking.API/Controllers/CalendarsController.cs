@@ -34,7 +34,7 @@ namespace Vejledningsbooking.API.Controllers
         /// <returns></returns>
 
         [HttpGet()]
-        [HttpHead]
+     //   [HttpHead]
         public ActionResult<IEnumerable<CalendarDto>> GetCalendars()
         {
             var calendarsFromRepo = _vejledningsbookingRepository.GetCalendars();

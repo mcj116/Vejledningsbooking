@@ -33,7 +33,7 @@ namespace Vejledningsbooking.API.Controllers
         /// <returns></returns>
 
         [HttpGet()]
-        [HttpHead]
+    //    [HttpHead]
         public ActionResult<IEnumerable<TeacherDto>> GetTeachers()
         {
             var teachersFromRepo = _vejledningsbookingRepository.GetTeachers();
@@ -81,12 +81,12 @@ namespace Vejledningsbooking.API.Controllers
                 teacherToReturn);
 
         }
-        [HttpOptions]
-        public IActionResult GetAuthorsOptions()
-        {
-            Response.Headers.Add("Allow", "GET,OPTIONS,POST");
-            return Ok();
-        }
+        //[HttpOptions]
+        //public IActionResult GetAuthorsOptions()
+        //{
+        //    Response.Headers.Add("Allow", "GET,OPTIONS,POST");
+        //    return Ok();
+        //}
 
         /// <summary>
         /// Delete a Teacher
