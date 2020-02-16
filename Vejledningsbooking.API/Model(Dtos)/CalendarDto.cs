@@ -16,7 +16,7 @@ namespace Vejledningsbooking.API.Model_Dtos_
         public string Name { get; set; }
 
         public List<TimeSlotDto> TimeSlots { get; set; }
-        public List<Course> Courses { get; set; }
+        public List<CourseDto> Courses { get; set; }
 
     }
 }

@@ -71,6 +71,29 @@ namespace Vejledningsbooking.API.Controllers
 
             var calendarEntity = _mapper.Map<Calendar>(calendar);
 
+
+            foreach (var timeSlot in calendarEntity.TimeSlots)
+            {
+                if (!_vejledningsbookingRepository.TeacherExists(timeSlot.TeacherId))
+                {
+                    return NotFound($"Time slot invalid: Noknown Teacher.");
+                }
+                foreach (var booking in timeSlot.Bookings)
+                {
+                    if (!_vejledningsbookingRepository.StudentExists(booking.StudentId))
+                    {
+                        return NotFound($"Booking invalid: Noknown Student.");
+                    }
+                    if (_vejledningsbookingRepository.CountStudentBookings(booking.StudentId) >= 2)
+                    {
+                        return BadRequest($"The maximum booking limit reached.");
+
+                    }
+                }
+                //timeSlot.Id = Guid.NewGuid();
+            }
+
+
             _vejledningsbookingRepository.AddCalendars(calendarEntity);
             _vejledningsbookingRepository.Save();
 

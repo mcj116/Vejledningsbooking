@@ -3,8 +3,6 @@ using Vejledningsbooking.API.ValidationAttributes;
 
 namespace Vejledningsbooking.API.Model_Dtos_
 {
-    [CourseTitleMustBeDifferentFromDescription(
-        ErrorMessage = "Title must be different from description.")]
     public abstract class CourseForManipulationDto
     {
         [Required(ErrorMessage = "You should fill out a title.")]

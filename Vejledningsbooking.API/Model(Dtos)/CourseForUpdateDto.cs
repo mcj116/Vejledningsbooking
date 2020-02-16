@@ -7,7 +7,5 @@ namespace Vejledningsbooking.API.Model_Dtos_
 {
     public class CourseForUpdateDto : CourseForManipulationDto
     {
-        //public string Title { get; set; }
-
     }
 }

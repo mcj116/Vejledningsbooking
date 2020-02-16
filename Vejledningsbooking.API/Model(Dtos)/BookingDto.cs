@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Vejledningsbooking.API.Entities;
+using Vejledningsbooking.API.ValidationAttributes;
 
 namespace Vejledningsbooking.API.Model_Dtos_
-{/// <summary>
+{
+/// <summary>
 /// https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-with-entity-framework/part-5
 /// </summary>
     public class BookingDto

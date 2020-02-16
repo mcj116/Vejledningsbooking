@@ -21,6 +21,7 @@ namespace Vejledningsbooking.API.Services
         bool Save();
         IEnumerable<Student> GetStudents();
         Student GetStudent(Guid studentId);
+        int CountStudentBookings(Guid studentId);
         void AddStudents(Student student);
         void DeleteStudent(Student student);
         bool StudentExists(Guid studentId);

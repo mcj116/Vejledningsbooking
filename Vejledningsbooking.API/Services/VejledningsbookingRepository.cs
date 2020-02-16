@@ -181,6 +181,19 @@ namespace Vejledningsbooking.API.Services
 
         }
 
+        public int CountStudentBookings(Guid studentId)
+        {
+
+            if (studentId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(studentId));
+            }
+
+            return _context.Bookings.Where(s => s.StudentId == studentId && s.StartDateTime > DateTime.Now).Count();
+
+
+        }
+
         public void AddStudents(Student student)
         {
             if (student == null)
@@ -285,6 +298,7 @@ namespace Vejledningsbooking.API.Services
         {
             // return _context.Calendars.ToList();
             return _context.Calendars
+                .Include(c => c.Courses)
                 .Include(t => t.TimeSlots).ThenInclude(t => t.Teacher)
                 .Include(t => t.TimeSlots).ThenInclude(b => b.Bookings)
                 .Include(t => t.TimeSlots).ThenInclude(b => b.Bookings).ThenInclude(s => s.Student)
@@ -297,8 +311,12 @@ namespace Vejledningsbooking.API.Services
             {
                 throw new ArgumentNullException(nameof(calendarId));
             }
-
-            return _context.Calendars.Include(t => t.TimeSlots).FirstOrDefault(a => a.Id == calendarId);
+            return _context.Calendars
+                .Include(c => c.Courses)
+                .Include(t => t.TimeSlots).ThenInclude(t => t.Teacher)
+                .Include(t => t.TimeSlots).ThenInclude(b => b.Bookings)
+                .Include(t => t.TimeSlots).ThenInclude(b => b.Bookings).ThenInclude(s => s.Student)
+                .FirstOrDefault(a => a.Id == calendarId);
         }
 
         public void AddCalendars(Calendar calendar)
@@ -308,10 +326,7 @@ namespace Vejledningsbooking.API.Services
                 throw new ArgumentNullException(nameof(calendar));
             }
 
-            foreach (var timeSlot in calendar.TimeSlots)
-            {
-                timeSlot.Id = Guid.NewGuid();
-            }
+
             // the repository fills the id (instead of using identity columns)
             // calendar.Id = Guid.NewGuid();
 
@@ -347,5 +362,7 @@ namespace Vejledningsbooking.API.Services
         {
             throw new NotImplementedException();
         }
+
+
     }
 }
