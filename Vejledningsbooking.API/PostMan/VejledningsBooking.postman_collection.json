@@ -595,6 +595,179 @@
 			"name": "Calendars",
 			"item": [
 				{
+					"name": "TimeSlots",
+					"item": [
+						{
+							"name": "Bookings",
+							"item": [
+								{
+									"name": "GET Bookings for timeslot",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/jsom",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "http://localhost:51044/api/calendars/3fa85f64-5717-4562-b3fc-2c963f66afa6/timeslots/18d23e5e-7194-4f80-8739-601de1bea1ee/bookings",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "51044",
+											"path": [
+												"api",
+												"calendars",
+												"3fa85f64-5717-4562-b3fc-2c963f66afa6",
+												"timeslots",
+												"18d23e5e-7194-4f80-8739-601de1bea1ee",
+												"bookings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "POST Single booking",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"startDateTime\": \"2020-03-15T10:00:00\",\r\n  \"endDateTime\": \"2020-03-19T10:30:00\",\r\n  \"studentId\": \"d28111e1-2b29-473a-a40f-e18cb51f9b35\"\r\n}"
+										},
+										"url": {
+											"raw": "http://localhost:51044/api/calendars/18d63e5e-7194-4f80-8739-601de1bea1ee/timeslots/18d23e5e-7194-4f80-8739-601de1bea1ee/bookings",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "51044",
+											"path": [
+												"api",
+												"calendars",
+												"18d63e5e-7194-4f80-8739-601de1bea1ee",
+												"timeslots",
+												"18d23e5e-7194-4f80-8739-601de1bea1ee",
+												"bookings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "DELETE Booking",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "http://localhost:51044/api/calendars/18d63e5e-7194-4f80-8739-601de1bea1ee/timeslots/18d23e5e-7194-4f80-8739-601de1bea1ee/bookings/18d23a5a-7194-4f80-8739-601de1bea1ee",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "51044",
+											"path": [
+												"api",
+												"calendars",
+												"18d63e5e-7194-4f80-8739-601de1bea1ee",
+												"timeslots",
+												"18d23e5e-7194-4f80-8739-601de1bea1ee",
+												"bookings",
+												"18d23a5a-7194-4f80-8739-601de1bea1ee"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "POST Single timeslot",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"timeSlotStartDateTime\": \"2020-02-17T07:37:55.807Z\",\r\n  \"timeSlotEndDateTime\": \"2020-02-17T17:37:55.807Z\",\r\n  \"teacherId\": \"2ee49fe1-edf2-4f21-8409-3eb25ae6ca51\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:51044/api/calendars/18d63e5e-7194-4f80-8739-601de1bea1ee/timeslots",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "51044",
+									"path": [
+										"api",
+										"calendars",
+										"18d63e5e-7194-4f80-8739-601de1bea1ee",
+										"timeslots"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE TimeSlot",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "http://localhost:51044/api/calendars/18d63e5e-7194-4f80-8739-601de1bea1ee/timeSlots/18d23e5e-7194-4f80-8739-601de1bea1ee",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "51044",
+									"path": [
+										"api",
+										"calendars",
+										"18d63e5e-7194-4f80-8739-601de1bea1ee",
+										"timeSlots",
+										"18d23e5e-7194-4f80-8739-601de1bea1ee"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "GET Calendars",
 					"request": {
 						"method": "GET",
@@ -616,6 +789,34 @@
 							"path": [
 								"api",
 								"calendars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Calendar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/jsom",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:51044/api/calendars/18d63e5e-7194-4f80-8739-601de1bea1ee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "51044",
+							"path": [
+								"api",
+								"calendars",
+								"18d63e5e-7194-4f80-8739-601de1bea1ee"
 							]
 						}
 					},
@@ -655,7 +856,7 @@
 					"response": []
 				},
 				{
-					"name": "POST Calendar with Timeslot",
+					"name": "POST Calendar with Timeslot and booking",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -670,7 +871,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"Name\" : \"Kalender for SW vejledning\",\n\t\"timeslots\": [\n\t\t{\n\t\t\t\"TimeSlotStartDateTime\" : \"2020-03-19 8:00:00\",\n\t\t\t\"TimeSlotEndDateTime\" : \"2020-03-19 14:00:00\",\n\t\t\t\"bookings\": [\n\t\t\t\t{\n\t\t\t\t\t\"StartDateTime\" :\"2020-03-19 8:00:00\",\n\t\t\t\t\t\"EndDateTime\":\"2020-03-19 14:00:00\"\n\t\t\t\t}\n\t\t\t\t]\n\t\t}\n\t\t]\n}"
+							"raw": "{\n\t\"Name\" : \"Kalender for SW vejledning\",\n\t\"timeslots\": [\n\t\t{\n\t\t\t\"TimeSlotStartDateTime\" : \"2020-03-19 8:00:00\",\n\t\t\t\"TimeSlotEndDateTime\" : \"2020-03-19 14:00:00\",\n\t\t\t\"teacherId\" : \"2ee49fe1-edf2-4f21-8409-3eb25ae6ca51\",\n\t\t\t\"bookings\": [\n\t\t\t\t{\n\t\t\t\t\t\"StudentId\" : \"d28888e1-2b29-473a-a40f-e18cb51f9b35\",\n\t\t\t\t\t\"StartDateTime\" :\"2020-03-19 9:00:00\",\n\t\t\t\t\t\"EndDateTime\":\"2020-03-19 9:30:00\"\n\t\t\t\t}\n\t\t\t\t]\n\t\t}\n\t\t]\n}"
 						},
 						"url": {
 							"raw": "http://localhost:51044/api/calendars",
@@ -706,7 +907,7 @@
 							"raw": "{\n\t\"studentFirstName\" : \"Bent\",\n\t\"studentLastName\" : \"Andersen\",\n\t\"courses\": [\n\t\t{\n\t\t\t\"title\" : \"Førstehjælp\"\n\t\t},\n\t\t{\n\t\t\t\"title\" : \"Advanced gRPC\"\n\t\t}\n\t\t]\n}"
 						},
 						"url": {
-							"raw": "http://localhost:51044/api/calendars/430890d7-0eff-475b-9c6f-3e66e1713772/courses/58f27914-1424-43c6-9d8a-440e7de3bbed",
+							"raw": "http://localhost:51044/api/calendars/93a886a1-db30-4b1b-8d80-c11f4f2d3953/courses/5b1c2b1d-4817-4021-81c3-cc796ad19c6b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -715,9 +916,9 @@
 							"path": [
 								"api",
 								"calendars",
-								"430890d7-0eff-475b-9c6f-3e66e1713772",
+								"93a886a1-db30-4b1b-8d80-c11f4f2d3953",
 								"courses",
-								"58f27914-1424-43c6-9d8a-440e7de3bbed"
+								"5b1c2b1d-4817-4021-81c3-cc796ad19c6b"
 							]
 						}
 					},
