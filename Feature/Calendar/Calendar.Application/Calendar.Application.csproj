@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Calendar.Application</AssemblyName>
+    <RootNamespace>Calendar.Application</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Calendar.Domain\Calendar.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Vejledningsbooking.API.Entities;
-using Vejledningsbooking.API.Model_Dtos_;
+//using Vejledningsbooking.API.Model_Dtos_;
 
 namespace Vejledningsbooking.API.ValidationAttributes
 {

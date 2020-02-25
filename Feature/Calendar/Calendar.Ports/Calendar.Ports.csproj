@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Calendar.Ports</AssemblyName>
+    <RootNamespace>Calendar.Ports</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Calendar.Application\Calendar.Application.csproj" />
+  </ItemGroup>
+
+</Project>
